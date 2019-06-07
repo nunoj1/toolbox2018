@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ficha1</title>
+
+</head>
+
+<body style="font-family: arial;">
+
+    <div id="app" style="display:flex; flex-direction:row;flex-wrap:wrap; justify-content:space-between;">
+        <div>
+            <h1>EXERCICIO 1</h1>
+            <h3>Nota Teorica</h3><input type="number" v-model="num1" />
+            <h3>Nota Pratica</h3><input type="number" v-model="num2" />
+            <button @click="soma()">Resultado</button>
+            <h1>{{resultado}}</h1>
+            <h1>{{resultado>9.5?"Aprovado":"Reprovado"}}</h1>
+        </div>
+        <div>
+            <h1>EXERCICIO 2</h1>
+            <h3>Número do mês</h3><input type="number" v-model="nmes" />
+            <button @click="mes()">Resultado</button>
+            <h1>{{mess}}</h1>
+        </div>
+        <div>
+            <h1>EXERCICIO 3</h1>
+            <h3>Primeiro número</h3><input type="number" v-model="op1" />
+            <h3>Segundo número</h3><input type="number" v-model="op2" />
+            <h3>Operação (+, /, *, -)</h3><input type="text" v-model="op" />
+            <button @click="oper()">Resultado</button>
+            <h1>{{ope}}</h1>
+        </div>
+        <div>
+            <h1>EXERCICIO 4</h1>
+            <h3>Multiplos de 5 menores de 20</h3>
+            <button @click="multiplo()">Resultado</button>
+            <h1>{{multiplos}}</h1>
+        </div>
+        <div>
+            <h1>EXERCICIO 5</h1>
+            <h3>Soma dos primeiros 100 números inteiros</h3><input type="number" v-model="intnum" />
+            <button @click="soma100()">Resultado</button>
+            <h3>{{res}}</h3>
+        </div>
+        <div>
+            <h1>EXERCICIO 6</h1>
+            <h3>Introduza um número</h3><input type="number" v-model="factnum" />
+            <button @click="factor()">Resultado</button>
+            <h3>{{fact}}</h3>
+        </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+        <script>
+            var aplicacao = new Vue({
+                el: '#app',
+                data: {
+                    //Ex1:
+                    num1: 0,
+                    num2: 0,
+                    resultado: 0,
+                    //Ex2:
+                    nmes:0,
+                    mess:"",
+                    //Ex3:
+                    op1:0,
+                    op2:0,
+                    op:"",
+                    ope:"",
+                    //Ex4:
+                    multi:5,
+                    multiplos:"",
+                    i:1,
+                    a:0,
+                    //Ex5:
+                    res:"",
+                    numint:1,
+                    aa:0,
+                    intnum:0,
+                    somaanterior:0,
+                    somanova:0,
+                    //Ex6:
+                    fact:"",
+                    factnum:0,
+                    factnew:0
+
+                }, 
+                methods: {
+                    soma: function () {
+                        this.resultado = (this.num1 * 1 + this.num2 * 1) / 2
+                    },
+                    mes: function () {
+                        this.mess=(this.nmes==1?"Janeiro":this.nmes==2?"Fevereiro":this.nmes==3?"Março":this.nmes==4?"Abril":this.nmes==5?"Maio":this.nmes==6?"Junho":this.nmes==7?"Julho":this.nmes==8?"Agosto":this.nmes==9?"Setembro":this.nmes==10?"Outubro":this.nmes==11?"Novembro":this.nmes==12?"Dezembro":"")
+                    },
+                    oper:function () {
+                        this.ope=(this.op==="+"?this.op1*1+this.op2*1:this.op==="-"?this.op1*1-this.op2*1:this.op==="/"?this.op1*1/this.op2*1:this.op==="*"?this.op1*1*this.op2*1:"")
+                    },
+                    multiplo:function(){
+                        this.i=1,
+                        this.a=0,
+                        this.multiplos=[]
+                        while (this.a==0){    
+                            this.i*this.multi<20?this.multiplos.push(this.i):this.a=1
+                            this.i++
+                        }
+                        
+                    },
+                    soma100:function(){
+                        this.numint=1,
+                        this.aa=0,
+                        this.res=[],
+                        this.somaanterior=0,
+                        this.somaanterior=(this.numint*1+this.intnum*1),
+                        this.res.push(this.somaanterior),
+                        this.numint++
+                        while (this.aa==0){    
+                            this.numint*1<=100?this.somanova=(this.numint*1+this.somaanterior*1):this.aa=1,
+                            this.res.push(this.somanova),
+                            this.somaanterior=this.somanova,
+                            this.numint++
+                        }
+                    },
+                    factor:function(){
+                        this.factnew=this.factnum-1
+                        this.fact=this.factnum
+                        while (this.factnew>0){
+                            this.fact=this.fact*1*this.factnew*1
+                            this.factnew--
+                       }
+                    }
+                }
+            })
+        </script>
+    
+</body>
+
+
+
+</html>
